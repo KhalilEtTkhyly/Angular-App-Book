@@ -1,0 +1,9 @@
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{{book?.thumbnail}}" alt="Card image cap">
+  <div class="card-body">
+    <a [routerLink]="['/book',book.id]"><h5 class="card-title">{{book?.title}}</h5></a>
+    <p class="card-text">{{book?.subTitle}}</p>
+    <a class="btn btn-primary" *ngIf="!libraryService.hasBook(book.id)" (click)="libraryService.addBook(book)">Add to Library</a>
+    <a class="btn btn-danger" *ngIf="libraryService.hasBook(book.id)" (click)="libraryService.removeBook(book)">Remove from Library</a>
+  </div>
+</div>

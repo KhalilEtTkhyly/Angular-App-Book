@@ -1,0 +1,27 @@
+<div class="showHideLoader" *ngIf="!book">
+	<app-loader></app-loader>
+</div>
+<div class="container mt-5 mb-5 text-center">
+	
+	<h4 class="display-4">{{book?.title}}</h4>
+	
+	<img src="{{book?.thumbnail}}" class="img-fluid mt-5 mb-5" alt="Responsive image">
+	
+	<p class="lead" [innerHTML]="book?.description">
+	  
+	</p>
+	<dl class="row mt-5 text-left">
+	  <dt class="col-sm-2" *ngIf="book?.authors">Book Author:</dt>
+	  <dd class="col-sm-10" *ngIf="book?.authors">{{book?.authors}}</dd>
+
+	  <dt class="col-sm-2"  *ngIf="book?.publishDate">Publish Date:</dt>
+	  <dd class="col-sm-10" *ngIf="book?.publishDate">{{book?.publishDate}}</dd>
+
+	  <dt class="col-sm-2"  *ngIf="book?.categories">Category:</dt>
+	  <dd class="col-sm-10" *ngIf="book?.categories"><span class="badge badge-pill badge-secondary" *ngFor="let cat of book?.categories">{{cat}}</span></dd>
+	</dl>
+
+    <a class="btn btn-primary" *ngIf="!libraryService.hasBook(book?.id)" (click)="libraryService.addBook(book)">Add to Library</a>
+    <a class="btn btn-danger" *ngIf="libraryService.hasBook(book?.id)" (click)="libraryService.removeBook(book)">Remove from Library</a>
+
+</div>

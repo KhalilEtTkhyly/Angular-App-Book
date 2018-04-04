@@ -1,0 +1,17 @@
+<div class="container mt-5">
+	<div class="dropdown mb-5 text-center">
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Sort By
+		</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a (click)="libraryService.ReverseBooks()" [class.active]="libraryService.newestSorted" class="dropdown-item active">Newest First</a>
+			<a (click)="libraryService.ReverseBooks()" [class.active]="!libraryService.newestSorted" class="dropdown-item">Oldest First</a>
+		</div>
+	</div>
+	<p *ngIf="libraryService.books?.length === 0" class="text-center">No books found in the library, please search and add some.</p>
+	<div class="row">
+		<div class="col-4" *ngFor="let book of libraryService.books">
+			<app-book-card [book]="book"></app-book-card>
+		</div>
+	</div>
+</div>
